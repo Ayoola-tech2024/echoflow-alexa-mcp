@@ -76,7 +76,7 @@ alexa, mcp, model-context-protocol, aws, amazon-bedrock, typescript, react, node
 ```
 
 ### Try It Out Links
-- **GitHub Repo:** `https://github.com/your-username/echoflow-alexa-mcp` (replace with your pushed repo link)
+- **GitHub Repo:** `https://github.com/Ayoola-tech2024/echoflow-alexa-mcp`
 
 ---
 
@@ -96,7 +96,7 @@ We used the AWS Bedrock Runtime SDK (@aws-sdk/client-bedrock-runtime) connecting
 ### Open Source Contribution Answer
 ```text
 EchoFlow is published as a 100% open-source project under the permissive MIT License. The repository contains full source code, test suites, MCP protocol conformance tests, architecture diagrams, and a comprehensive CONTRIBUTING.md guide.
-GitHub Repo: https://github.com/your-username/echoflow-alexa-mcp
+GitHub Repo: https://github.com/Ayoola-tech2024/echoflow-alexa-mcp
 ```
 
 ### Product Feedback & Friction Log

@@ -79,7 +79,7 @@ flowchart TD
 ### 1. Installation
 Clone the repository and install all dependencies:
 ```bash
-git clone https://github.com/your-username/echoflow-alexa-mcp.git
+git clone https://github.com/Ayoola-tech2024/echoflow-alexa-mcp.git
 cd echoflow-alexa-mcp
 npm install
 ```
