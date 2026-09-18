@@ -39,7 +39,7 @@ EchoFlow is an autonomous agent system and self-hosted **Streamable HTTP MCP Ser
 ## 🛠️ How We Built It
 EchoFlow is structured into a modular, production-grade architecture:
 
-1. **MCP Core Server (`@modelcontextprotocol/sdk`):** Implements Streamable HTTP (SSE) transport endpoints for Alexa+ agent integration, exposing structured tools (`manage_smart_home`, `fetch_calendar_briefing`, `trigger_ops_routine`, `search_knowledge_base`).
+1. **MCP Core Server (`@modelcontextprotocol/sdk`):** Implements Streamable HTTP (SSE) transport endpoints for Alexa+ agent integration, exposing structured tools (`control_smart_device`, `get_daily_briefing`, `trigger_ops_routine`, `query_knowledge_base`).
 2. **AWS Bedrock Intelligence Layer:** Implements conversational memory, tool routing, and streaming generation via the AWS Bedrock Runtime SDK.
 3. **Voice & UI Simulator (React + TypeScript + Tailwind CSS):** A responsive web client simulating Alexa+ audio interactions with Web Speech API synthesis, live MCP request/response inspectors, and device state toggles.
 
