@@ -153,7 +153,7 @@ Respond with concise, friendly Alexa voice speech and execute appropriate tool c
     }
 
     // Direct device controls
-    if (q.includes('light') || q.includes('lamp')) {
+    if (q.includes('light') || q.includes('lamp') || q.includes('ceiling') || q.includes('bulb')) {
       let target = 'light-living-room';
       if (q.includes('office') || q.includes('desk')) target = 'light-office';
       if (q.includes('bedroom')) target = 'light-bedroom';
@@ -174,8 +174,9 @@ Respond with concise, friendly Alexa voice speech and execute appropriate tool c
       const res = handleControlSmartDevice({ deviceId: target, action, value: val });
       executed.push({ name: 'control_smart_device', arguments: { deviceId: target, action, value: val }, result: res });
 
+      const deviceName = target.replace('light-', '').replace('-', ' ');
       return {
-        voiceResponse: `Done. I have updated the ${target.replace('-', ' ')} according to your command.`,
+        voiceResponse: `Done. I have turned ${action === 'turn_off' ? 'off' : 'on'} the ${deviceName} light according to your command.`,
         toolCallsExecuted: executed,
         modelUsed: 'AWS Bedrock Agent (Simulated Claude 3.5 Sonnet)'
       };

@@ -42,28 +42,27 @@ export const App: React.FC = () => {
   useEffect(() => {
     let unsubscribeStream: (() => void) | null = null;
 
-    const init = async () => {
+    const pollState = async () => {
       try {
         const health = await fetchHealth();
         if (health.status === 'healthy') {
           setServerConnected(true);
         }
-
         const stateData = await fetchEnvironmentState();
         setEnvironment(stateData.environment);
-
-        // Subscribe to real-time SSE stream
-        unsubscribeStream = subscribeToMcpStream((newLog) => {
-          setLogs((prev) => [newLog, ...prev.slice(0, 99)]);
-        });
       } catch (err) {
-        console.warn('Initial server connection attempt failed. Ensure server is running on port 3001.', err);
         setServerConnected(false);
       }
     };
 
-    init();
-    const interval = setInterval(init, 5000);
+    pollState();
+
+    // Subscribe to real-time SSE stream once on mount
+    unsubscribeStream = subscribeToMcpStream((newLog) => {
+      setLogs((prev) => [newLog, ...prev.slice(0, 99)]);
+    });
+
+    const interval = setInterval(pollState, 10000);
 
     return () => {
       clearInterval(interval);
