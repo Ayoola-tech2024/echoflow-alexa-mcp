@@ -41,12 +41,11 @@ export function handleControlSmartDevice(params: { deviceId: string; action: str
   switch (params.action) {
     case 'turn_on':
       updates.isOn = true;
-      if (device.type === 'light' && (device.brightness === 0 || !device.brightness)) {
-        updates.brightness = 100;
-      }
+      updates.brightness = device.brightness && device.brightness > 0 ? device.brightness : 100;
       break;
     case 'turn_off':
       updates.isOn = false;
+      updates.brightness = 0;
       break;
     case 'set_brightness':
       const brightness = parseInt(params.value || '100', 10);

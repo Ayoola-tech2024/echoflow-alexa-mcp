@@ -15,12 +15,12 @@ export const SmartHomeSandbox: React.FC<SmartHomeSandboxProps> = ({
 
   return (
     <div className="glass-panel rounded-2xl p-5 border border-slate-800">
-      <div className="flex items-center justify-between mb-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
         <div className="flex items-center gap-2">
           <Zap className="w-5 h-5 text-amber-400" />
           <h2 className="text-base font-bold text-slate-100">Smart Home IoT Sandbox</h2>
           <span className="text-xs px-2.5 py-0.5 rounded-full bg-slate-800 text-slate-400 font-mono">
-            {devices.length} Devices Active
+            {devices.length} Devices
           </span>
         </div>
 
@@ -44,32 +44,48 @@ export const SmartHomeSandbox: React.FC<SmartHomeSandboxProps> = ({
           const isThermostat = device.type === 'thermostat';
           const isSecurity = device.type === 'security';
 
+          const isPoweredActive = device.isOn;
+
           return (
             <div
               key={device.id}
-              className={`p-4 rounded-xl border transition-all duration-200 ${
-                device.isOn || (isLock && device.isLocked) || (isSecurity && device.armedState !== 'disarmed')
-                  ? 'bg-slate-900/90 border-cyan-500/40 shadow-sm shadow-cyan-500/10'
-                  : 'bg-slate-950/60 border-slate-800/80 opacity-75'
+              className={`p-4 rounded-xl border transition-all duration-300 ${
+                isPoweredActive || (isLock && device.isLocked) || (isSecurity && device.armedState !== 'disarmed')
+                  ? 'bg-slate-900/95 border-cyan-500/50 shadow-md shadow-cyan-500/10'
+                  : 'bg-slate-950/80 border-slate-800/80 opacity-60'
               }`}
             >
               <div className="flex items-start justify-between gap-2 mb-3">
                 <div className="flex items-center gap-2.5">
                   <div
-                    className={`p-2 rounded-lg ${
-                      device.isOn || (isLock && device.isLocked)
-                        ? 'bg-cyan-500/20 text-cyan-400'
-                        : 'bg-slate-800 text-slate-500'
+                    className={`p-2.5 rounded-xl transition-all duration-300 ${
+                      isPoweredActive || (isLock && device.isLocked)
+                        ? 'bg-cyan-500/20 text-cyan-400 shadow-sm shadow-cyan-500/30 ring-1 ring-cyan-500/40'
+                        : 'bg-slate-800/80 text-slate-500'
                     }`}
                   >
-                    {isLight && <Lightbulb className="w-4 h-4" />}
-                    {isLock && (device.isLocked ? <Lock className="w-4 h-4 text-emerald-400" /> : <Unlock className="w-4 h-4 text-amber-400" />)}
-                    {isThermostat && <Thermometer className="w-4 h-4 text-cyan-400" />}
-                    {isSecurity && (device.armedState !== 'disarmed' ? <ShieldCheck className="w-4 h-4 text-emerald-400" /> : <ShieldAlert className="w-4 h-4 text-rose-400" />)}
+                    {isLight && <Lightbulb className={`w-5 h-5 ${isPoweredActive ? 'animate-pulse text-amber-300' : ''}`} />}
+                    {isLock && (device.isLocked ? <Lock className="w-5 h-5 text-emerald-400" /> : <Unlock className="w-5 h-5 text-amber-400" />)}
+                    {isThermostat && <Thermometer className="w-5 h-5 text-cyan-400" />}
+                    {isSecurity && (device.armedState !== 'disarmed' ? <ShieldCheck className="w-5 h-5 text-emerald-400" /> : <ShieldAlert className="w-5 h-5 text-rose-400" />)}
                   </div>
 
                   <div>
-                    <h3 className="text-sm font-semibold text-slate-100">{device.name}</h3>
+                    <div className="flex items-center gap-2">
+                      <h3 className="text-sm font-bold text-slate-100">{device.name}</h3>
+                      {/* Explicit Power Status Badge */}
+                      {isLight && (
+                        <span
+                          className={`text-[10px] font-mono px-2 py-0.5 rounded-full font-bold uppercase transition-all ${
+                            isPoweredActive
+                              ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
+                              : 'bg-slate-800 text-slate-400 border border-slate-700'
+                          }`}
+                        >
+                          {isPoweredActive ? '● ON' : '○ OFF'}
+                        </span>
+                      )}
+                    </div>
                     <p className="text-[11px] text-slate-400">{device.room}</p>
                   </div>
                 </div>
@@ -77,54 +93,63 @@ export const SmartHomeSandbox: React.FC<SmartHomeSandboxProps> = ({
                 {/* Quick Toggle Button */}
                 {isLight && (
                   <button
-                    onClick={() => onToggleDevice(device.id, device.isOn ? 'turn_off' : 'turn_on')}
-                    className={`p-1.5 rounded-lg border transition-colors ${
-                      device.isOn
-                        ? 'bg-cyan-500/20 border-cyan-500/40 text-cyan-400'
-                        : 'bg-slate-800 border-slate-700 text-slate-400 hover:text-white'
+                    onClick={() => onToggleDevice(device.id, isPoweredActive ? 'turn_off' : 'turn_on')}
+                    className={`p-2 rounded-lg border transition-all ${
+                      isPoweredActive
+                        ? 'bg-cyan-500/20 border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/30'
+                        : 'bg-slate-800 border-slate-700 text-slate-400 hover:text-white hover:bg-slate-700'
                     }`}
-                    title="Toggle Light"
+                    title={isPoweredActive ? 'Turn Off Appliance' : 'Turn On Appliance'}
                   >
-                    <Power className="w-3.5 h-3.5" />
+                    <Power className="w-4 h-4" />
                   </button>
                 )}
 
                 {isLock && (
                   <button
                     onClick={() => onToggleDevice(device.id, device.isLocked ? 'unlock' : 'lock')}
-                    className={`px-2 py-1 rounded text-xs font-semibold border transition-colors ${
+                    className={`px-2.5 py-1 rounded-lg text-xs font-bold border transition-colors ${
                       device.isLocked
-                        ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400'
-                        : 'bg-amber-500/10 border-amber-500/30 text-amber-400'
+                        ? 'bg-emerald-500/15 border-emerald-500/30 text-emerald-400'
+                        : 'bg-amber-500/15 border-amber-500/30 text-amber-400'
                     }`}
                   >
-                    {device.isLocked ? 'LOCKED' : 'UNLOCKED'}
+                    {device.isLocked ? '🔒 LOCKED' : '🔓 UNLOCKED'}
                   </button>
                 )}
               </div>
 
               {/* Specific Control Sliders / Details */}
               {isLight && (
-                <div className="space-y-1.5 mt-2">
-                  <div className="flex items-center justify-between text-[11px] text-slate-400">
-                    <span>Brightness</span>
-                    <span className="font-mono text-cyan-300">{device.brightness || 0}%</span>
+                <div className="space-y-1.5 mt-2 pt-2 border-t border-slate-800/60">
+                  <div className="flex items-center justify-between text-[11px] text-slate-400 font-mono">
+                    <span>Power / Brightness:</span>
+                    <span className={isPoweredActive ? 'text-cyan-300 font-bold' : 'text-slate-500'}>
+                      {isPoweredActive ? `${device.brightness || 100}% (ACTIVE)` : '0% (POWERED DOWN)'}
+                    </span>
                   </div>
                   <input
                     type="range"
                     min="0"
                     max="100"
-                    value={device.brightness || 0}
-                    onChange={(e) => onToggleDevice(device.id, 'set_brightness', e.target.value)}
+                    value={isPoweredActive ? (device.brightness || 100) : 0}
+                    onChange={(e) => {
+                      const val = parseInt(e.target.value, 10);
+                      if (val === 0) {
+                        onToggleDevice(device.id, 'turn_off');
+                      } else {
+                        onToggleDevice(device.id, 'set_brightness', e.target.value);
+                      }
+                    }}
                     className="w-full accent-cyan-400 h-1.5 bg-slate-800 rounded-lg cursor-pointer"
                   />
                 </div>
               )}
 
               {isThermostat && (
-                <div className="flex items-center justify-between mt-2 pt-2 border-t border-slate-800 text-xs">
+                <div className="flex items-center justify-between mt-2 pt-2 border-t border-slate-800/60 text-xs">
                   <span className="text-slate-400">Target Temp:</span>
-                  <div className="flex items-center gap-1">
+                  <div className="flex items-center gap-1.5">
                     <button
                       onClick={() => onToggleDevice(device.id, 'set_temperature', String((device.targetTemperature || 21) - 0.5))}
                       className="w-6 h-6 rounded bg-slate-800 text-slate-200 hover:bg-slate-700 flex items-center justify-center font-bold"
@@ -143,9 +168,9 @@ export const SmartHomeSandbox: React.FC<SmartHomeSandboxProps> = ({
               )}
 
               {isSecurity && (
-                <div className="flex items-center justify-between mt-2 pt-2 border-t border-slate-800 text-xs">
+                <div className="flex items-center justify-between mt-2 pt-2 border-t border-slate-800/60 text-xs">
                   <span className="text-slate-400">Guard Mode:</span>
-                  <span className="font-mono text-emerald-400 font-semibold uppercase">{device.armedState || 'DISARMED'}</span>
+                  <span className="font-mono text-emerald-400 font-bold uppercase">{device.armedState || 'DISARMED'}</span>
                 </div>
               )}
             </div>
