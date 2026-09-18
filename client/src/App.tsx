@@ -33,7 +33,7 @@ export const App: React.FC = () => {
     {
       id: 'welcome-1',
       sender: 'alexa',
-      text: 'Hello Martins! EchoFlow Alexa+ MCP Server is active with Streamable HTTP transport and AWS Bedrock intelligence. How can I assist you with your day or smart home environment?',
+      text: 'Hello Ayoola! EchoFlow Alexa+ MCP Server is active with Streamable HTTP transport and AWS Bedrock intelligence. How can I assist you with your day or smart home environment?',
       timestamp: new Date().toISOString()
     }
   ]);

@@ -202,7 +202,7 @@ export class SystemState {
     ];
 
     this.knowledgeBase = {
-      'user_name': 'Martins',
+      'user_name': 'Ayoola',
       'home_location': 'Seattle, WA',
       'favorite_temperature': '22.0°C',
       'emergency_contact': 'Campus Security (+1-800-555-0199)',

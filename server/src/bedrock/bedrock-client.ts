@@ -113,7 +113,7 @@ Respond with concise, friendly Alexa voice speech and execute appropriate tool c
       executed.push({ name: 'get_daily_briefing', arguments: {}, result: briefRes });
 
       return {
-        voiceResponse: `Good morning, Martins! I have activated your morning routine: climate is at 22.5 degrees, living room lights are on, and your calendar has 4 events today starting with your Hackathon Standup at 9:30 AM.`,
+        voiceResponse: `Good morning, Ayoola! I have activated your morning routine: climate is at 22.5 degrees, living room lights are on, and your calendar has 4 events today starting with your Hackathon Standup at 9:30 AM.`,
         toolCallsExecuted: executed,
         modelUsed: 'AWS Bedrock Agent (Simulated Claude 3.5 Sonnet)'
       };

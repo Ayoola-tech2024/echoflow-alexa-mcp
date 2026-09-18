@@ -1,51 +1,84 @@
-# 🎬 EchoFlow: 3-Minute Video Demo Script
+# 🎬 EchoFlow: 3-Minute Video Demo Presentation Script
 
-> **Target Duration:** 2 minutes 45 seconds (must be strictly under 3:00 per Amazon hackathon rules).  
-> **Screen Setup:** Full screen browser open to `http://localhost:5173`.  
-> **Speaker Audio:** English, enthusiastic, clear narration.
+> **Presenter:** Ayoola Damisile  
+> **Project:** EchoFlow — Autonomous Alexa+ MCP Agent with AWS Bedrock  
+> **Hackathon:** Build, Ship, Shape: Amazon Developer Hackathon 2026  
+> **Target Video Length:** 2 minutes 30 seconds to 2 minutes 45 seconds (Strictly under 3:00)  
+> **Screen Setup:** Full screen browser showing `http://localhost:5173`
 
 ---
 
-## ⏱️ Video Breakdown & Timestamp Choreography
+## 🎙️ Word-for-Word Teleprompter Script
 
-### 0:00 – 0:30: The Hook & The Problem
-- **Voiceover:**
-  > "Hello judges! This is EchoFlow—an autonomous proactive agent bridge for Alexa+, built on the new Model Context Protocol specification and powered by AWS Bedrock.
-  > 
-  > Legacy voice assistants are passive command-response devices. If you want to check your day, start your morning, or adjust your home, you have to issue dozens of manual commands.
-  > 
-  > With EchoFlow and Alexa+ MCP, Alexa transforms into an autonomous life agent that understands intent, executes multi-step tool workflows, and delivers proactive intelligence."
+### ⏱️ [0:00 – 0:35] Introduction & The Problem
+*(Look at the camera or show the top header of EchoFlow on screen)*
 
-### 0:30 – 1:15: Demo 1 — Proactive "Good Morning Launch"
-- **Action on Screen:**
-  - Click the **"Good Morning Launch"** scenario card (or speak into the mic: *"Alexa, good morning! Start my morning launch routine."*).
-- **Show on Screen:**
-  - Alexa's animated audio waveform pulsing cyan.
-  - The **Live MCP Protocol Inspector** immediately showing the stream of inbound `tools/call` and outbound SSE responses in real-time.
-  - The **Smart Home Sandbox** dynamically updating: living room lights turning on to warm daylight, climate adjusting to 22.5°C, and security disarming.
-- **Voiceover:**
-  > "Watch what happens in a single voice command. Alexa+ routes through our Streamable HTTP MCP server, queries our smart home tools, and executes three device mutations in parallel while synthesizing our morning schedule and energy consumption with Claude 3.5 Sonnet on AWS Bedrock."
+> **Read aloud:**  
+> "Hello Amazon hackathon judges and developer community! My name is **Ayoola Damisile**, and today I am excited to present **EchoFlow**—an autonomous, proactive agent bridge for **Alexa+**, built on the official **Model Context Protocol (MCP) Streamable HTTP specification** and powered by **AWS Bedrock**.
+>
+> Today’s voice assistants are mostly passive, single-command speakers. If you want to start your morning or manage your smart home, you have to issue dozens of repetitive commands.
+>
+> We built EchoFlow to transform Alexa+ into an autonomous, proactive smart life agent that can understand complex intent, orchestrate multi-step IoT routines in parallel, and deliver voice-synthesized daily intelligence."
 
-### 1:15 – 1:55: Demo 2 — Deep Focus Mode & Real-Time MCP Protocol Inspection
-- **Action on Screen:**
-  - Click the **"Deep Focus Mode"** scenario card.
-  - Click on the newest packet in the **Live MCP Protocol Inspector** to expand the raw JSON-RPC payload.
-- **Show on Screen:**
-  - Office desk lamp lights up in cyan focus tone, living room lights dim to 30%.
-  - Show the JSON payload: `method: "tools/call"`, `name: "trigger_ops_routine"`, and sub-50ms latency counter.
-- **Voiceover:**
-  > "Here, Alexa+ switches the home to focus mode. In our live MCP Inspector on the right, you can see the exact Streamable HTTP protocol packets conforming to the MCP 2025-11-25 standard. Every tool execution is completely transparent, low-latency, and auditable."
+---
 
-### 1:55 – 2:30: Demo 3 — Away Lockdown & Security Guard
-- **Action on Screen:**
-  - Click the **"Away Lockdown"** scenario card.
-- **Show on Screen:**
-  - All lights power off, front door deadbolt locks to green, security arms to `ARMED_AWAY`, and power drops to eco-saving wattage.
-- **Voiceover:**
-  > "When leaving home, EchoFlow coordinates a full environment lockdown—securing doors, turning off lighting, switching climate to eco mode, and arming Alexa Guard."
+### ⏱️ [0:35 – 1:15] Demo 1: Proactive "Good Morning Launch"
+*(Move your mouse to the top row of cards and click on **`Good Morning Launch`**)*
 
-### 2:30 – 2:45: Conclusion & Architecture Recap
-- **Voiceover:**
-  > "EchoFlow is 100% open-source under the MIT license, complies with the Alexa+ Streamable HTTP MCP standard, and includes comprehensive developer friction logs for the Amazon team.
-  > 
-  > Thank you for building the future of voice agents with Alexa+ and AWS Bedrock!"
+> **What to do on screen:**  
+> 1. Click the **`Good Morning Launch`** card.  
+> 2. Watch Alexa speak: *"Good morning, Ayoola! I have activated your morning routine..."*  
+> 3. Point your mouse to the **Live MCP Protocol Inspector** on the right and the **Smart Home Sandbox** below.
+>
+> **Read aloud:**  
+> "Watch what happens in a single conversational turn. 
+> 
+> Alexa+ connects to our self-hosted Streamable HTTP MCP server on port 3001. Using Anthropic Claude 3.5 Sonnet on AWS Bedrock, it analyzes my morning schedule and coordinates two MCP tools: `trigger_ops_routine` and `get_daily_briefing`.
+> 
+> As you can see on screen, my living room lights set to energizing daylight, the smart thermostat adjusts to 22.5 degrees, the overnight security alarm disarms, and Alexa speaks a personalized morning briefing summarizing my 4 calendar events and home energy usage."
+
+---
+
+### ⏱️ [1:15 – 1:55] Demo 2: Deep Focus Mode & Live Protocol Inspection
+*(Move your mouse to the **`Deep Focus Mode`** card and click it)*
+
+> **What to do on screen:**  
+> 1. Click the **`Deep Focus Mode`** card.  
+> 2. On the **Smart Home Sandbox**, notice the office desk lamp turn on with cyan focus light while the living room dims.  
+> 3. Click on the topmost packet in the **Live MCP Protocol Inspector** on the right to expand the raw JSON-RPC code.
+>
+> **Read aloud:**  
+> "Next, let's look at **Deep Focus Mode**. With one click, EchoFlow tunes my home office lighting to focus cyan and dims the living room to eliminate distractions and conserve energy.
+> 
+> On the right, our **Live MCP Protocol Inspector** displays the exact Server-Sent Events (SSE) packets streamed in real time, adhering strictly to the **MCP 2025-11-25+ standard**. Every tool call, parameter schema, and response payload is completely auditable with sub-50 millisecond execution latency."
+
+---
+
+### ⏱️ [1:55 – 2:25] Demo 3: Away Lockdown & Security Automation
+*(Move your mouse to the **`Away Lockdown`** card and click it)*
+
+> **What to do on screen:**  
+> 1. Click the **`Away Lockdown`** card.  
+> 2. Watch all lights turn to `0% (POWERED DOWN)`, the front door deadbolt lock to green `🔒 LOCKED`, and Alexa Guard arm to `ARMED_AWAY`.
+>
+> **Read aloud:**  
+> "When leaving the house, I simply say *'Alexa, I am leaving'*. 
+> 
+> EchoFlow executes the `away_secure` routine: every light in the house is powered down, the front door deadbolt is secured, the climate switches to eco mode, and Alexa Guard security arms whole-home perimeter monitoring."
+
+---
+
+### ⏱️ [2:25 – 2:45] Conclusion & Open Source
+*(Scroll smoothly to show the whole dashboard and conclude)*
+
+> **Read aloud:**  
+> "EchoFlow is 100% open-source under the MIT license on GitHub, includes comprehensive unit test coverage, and provides detailed developer friction logs to help Amazon shape the future of the Alexa+ developer ecosystem.
+> 
+> Thank you for watching, and I look forward to your feedback!"
+
+---
+
+## 💡 Quick Tips for Ayoola Before Recording:
+1. **Pacing:** Speak at a calm, natural, conversational pace. You don't need to rush; the script is timed at ~2 minutes 35 seconds.
+2. **Audio Check:** Make sure your computer sound is unmuted so Alexa's voice synthesis can be heard clearly in the video.
+3. **Screen Size:** Maximize your browser window (`F11` or full screen) so the dashboard looks crisp and clean.
