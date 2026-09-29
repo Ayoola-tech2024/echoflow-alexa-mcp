@@ -4,14 +4,14 @@
 > **Project:** EchoFlow — Autonomous Alexa+ MCP Agent with AWS Bedrock  
 > **Hackathon:** Build, Ship, Shape: Amazon Developer Hackathon 2026  
 > **Target Length:** ~2 minutes (Fast, Punchy & Simple)  
-> **Live Site:** `https://e18828b26921a3.lhr.life` (or `http://localhost:5173`)
+> **App URL:** `http://localhost:5173` (Press `F11` in Chrome/Edge for clean full-screen view)
 
 ---
 
 ## 🎙️ 2-Minute Action Script
 
 ### ⏱️ [0:00 – 0:15] Intro
-*(Screen open to `https://e18828b26921a3.lhr.life` in full screen)*
+*(Screen open to `http://localhost:5173` in full screen)*
 
 > **Read aloud:**  
 > "Hey Amazon judges! My name is **Ayoola Damisile**, and this is **EchoFlow** — an autonomous, proactive agent bridge for **Alexa+**, built on the official **Model Context Protocol (MCP)** specification and powered by **AWS Bedrock**."
